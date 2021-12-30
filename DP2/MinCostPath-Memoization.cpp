@@ -14,17 +14,18 @@ int minCostPathHelper(int **input, int rows, int cols, int **dp, int x, int y) {
     if(x==rows-1 && y==cols-1) {
         return input[x][y];
     }
+    
+    // Check if answer already exists
+    if(dp[x][y] != -1) {
+        return dp[x][y];
+    }
+    
     if(x==rows-1) {
         return input[x][y] + minCostPathHelper(input, rows, cols, dp, x, y+1);
     }
     if(y==cols-1) {
         return input[x][y] + minCostPathHelper(input, rows, cols, dp, x+1, y);
-    }
-
-    // Check if answer already exists
-    if(dp[x][y] != -1) {
-        return dp[x][y];
-    }
+    }    
     
     // Recursive calls
     int a = minCostPathHelper(input, rows, cols, dp, x, y+1);
